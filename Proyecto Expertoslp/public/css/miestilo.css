@@ -1,0 +1,55 @@
+.intro h3{
+   color:white;
+  font-family: 'Montserrat';
+  /* font-family: 'Rationale', sans-serif; */
+  font-weight: 460;
+
+ 
+}
+.intro h2{
+    color:white;
+   font-family: 'Montserrat';
+   /* font-family: 'Rationale', sans-serif; */
+   font-weight: 400;
+  
+ }
+.text-uppercase {
+    text-transform: uppercase!important;
+}
+.colorlib-nav{
+    background: #22345C;
+    letter-spacing: .0625rem;
+    padding-top: 1em;
+   
+}
+.pricing ul{
+    list-style:none;
+    /* margin-left: auto;
+    margin-right: auto;
+    padding-left: 230px;
+    padding-right: 200px; */
+}
+.colorlib-nav ul li{
+    font-weight: 700;
+    font-family: 'Montserrat';
+    
+}
+#nombre{
+     font-family: 'Rationale', sans-serif; 
+     font-size: 100px;
+}
+
+.intro h1{
+   color:#01B6C9;
+   margin-bottom: 0px;
+}
+
+#nombresm{
+    font-family: 'Rationale', sans-serif; 
+    font-size: 50px;
+}
+
+/*@media (min-width: 768px)
+.col-md-8 {
+  max-width: none!important;
+}*/

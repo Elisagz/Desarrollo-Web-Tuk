@@ -1,0 +1,84 @@
+
+body{
+    /* padding-top: 54px; */
+}
+.nb{
+    /* overflow:hidden; */
+}
+/* -----------------nav-------------------------- */
+header{
+    background: #01212c;
+    height: 65px; ;
+}
+
+header .menu{
+    padding: 0px;
+   align-items: center;
+    padding-right: 80px;
+}
+
+header .menu a{
+    color: rgba(255, 255, 255, .8);
+    text-decoration: none;
+}
+
+header .menu a:hover{
+    color: rgba(255, 255, 255, 1);
+}
+
+header .logo img{
+    height: 40px;
+    
+
+}
+
+header .menu .imagen{
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+
+    /* overflow: hidden; */
+}
+
+
+
+
+header .menu .imagen img{
+    border-radius: 100px;
+    padding: 2px;
+    background: whitesmoke;
+}
+
+/* -----------------barra lateral---------------- */
+
+.barra-lateral{
+background: #012f3f;
+color: #fff;
+min-width: 300px;
+min-height: 100vh;
+padding: 0;
+}
+
+.barra-lateral a{
+ color: #fff;
+} 
+
+/* ----------------menu--------------------- */
+.barra-lateral .menu a{
+    display:block;
+    padding: 20px;
+    font-family: sans-serif;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,.1)
+
+}
+
+.barra-lateral .menu a:hover{
+    background: #df8d00;
+    text-decoration: none; 
+}
+
+.barra-lateral .menu a .f{
+    margin-right: 20px;
+    font-weight: normal;
+}
