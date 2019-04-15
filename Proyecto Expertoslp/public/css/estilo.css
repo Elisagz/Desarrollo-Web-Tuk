@@ -3,7 +3,7 @@ body{
     background-color:rgb(148, 91, 91);
     background: url(../img/fond1.jpg);
     background-repeat: no-repeat;
-    background-position: center ;
+    /* background-position: center ; */
     background-attachment: fixed;
     background-size:cover;
   
@@ -113,8 +113,8 @@ font-size: 16px;
 
 /*---------------------- css para registro ------------------------------*/
 #container-registro{
-    width: 450px;
-    height: 480px;
+   width: 450px;
+   min-height: 480px;
    background-color: #000000b3;
     border-radius: 5px;
     padding: 35px 50px 40px 50px;

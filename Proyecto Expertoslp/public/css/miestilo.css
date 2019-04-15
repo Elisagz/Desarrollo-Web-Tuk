@@ -17,7 +17,7 @@
     text-transform: uppercase!important;
 }
 .colorlib-nav{
-    background: #22345C;
+    background: #091933;
     letter-spacing: .0625rem;
     padding-top: 1em;
    
@@ -37,6 +37,7 @@
 #nombre{
      font-family: 'Rationale', sans-serif; 
      font-size: 100px;
+     color:#FFA302;
 }
 
 .intro h1{

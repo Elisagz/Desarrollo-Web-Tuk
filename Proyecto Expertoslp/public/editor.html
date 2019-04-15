@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/editor.css">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+    
+        <script src="js/all.js"></script>
+        <!-- <script src="codemirror/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+        <script src="codemirror/mode/xml/xml.js"></script>
+        <script src="codemirror/mode/css/css.js"></script>
+        <script src="codemirror/mode/javascript/javascript.js"></script>
+        <script src="codemirror/addon/edit/closetag.js"></script> 
+         <script src="codemirror/addon/hint/show-hint.js"></script>
+        <script src="codemirror/addon/hint/css-hint.js"></script>
+         <link rel="stylesheet" href="codemirror/addon/hint/show-hint.css"> 
+        <link rel="stylesheet" href="codemirror/theme/blackboard.css">
+        <link rel="stylesheet" href="codemirror/theme/base16-dark.css">
+        <link rel="stylesheet" href="codemirror/theme/seti.css"> -->
+      
+        
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/theme-dracula.js"></script> -->
+      
+</head>
+<body>
+     <header class="row pl-2 fixed-top">
+
+                <div class="col-auto logo pt-2">
+                    <a href="#"><img src="img/tN.png"></a>
+                    
+                </div>
+                <nav class="col-12 col-sm-3 col-lg-2 menu d-inline-flex justify-content-end mr-5 ml-auto">
+                  <li class="nav-item">
+                      <a href="" style="font-size:20px" class="nav-link">Guardar</a>
+                  </li>
+                  <li class="nav-item">
+                        <a href="" style="font-size:20px" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                            <a href="" style="font-size:20px" class="nav-link">Cerrar</a>
+                        </li>
+                   
+                </nav>
+               
+     </header>
+     <main class="">
+         <div class="row editor">
+             <div class="col-4">
+                 <h2>Html</h2>
+                 <div class="format" id="htmle" ></div>
+             </div>
+             <div class="col-4">
+                    <h2>Css</h2>
+                    <div  class="format" id="ecss" ></div>
+             </div>
+             <div class="col-4 ">
+                    <h2>Javascript</h2>
+                    <div class="format" id="ejs" ></div>
+             </div>
+             
+         </div>
+         
+         <iframe class="col-12 frame" id="resultado" src="" frameborder="0">
+               
+            </iframe>
+     </main>
+    
+    
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src ="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!-- <script src="js/controlador-editor.js"></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.1/theme-monokai.js"></script> -->
+        <!-- <script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.js" charset="UTF-8"></script> 
+
+        <script >
+            function update(){
+                var res=document.getElementById('resultado').contentWindow.document;
+                res.open();
+                res.writeln(edHtml.getValue() +
+                            '<style>' + edCss.getValue() + '</style>'+
+                             '<script>'+ edJs.getValue()+'<\/script>');
+
+                res.close();
+            }
+        function setEditor(){
+                window.edHtml= ace.edit("htmle");
+                edHtml.setTheme("ace/theme/cobalt");
+                edHtml.session.setMode("ace/mode/html");
+
+               window.edCss= ace.edit("ecss");
+                edCss.setTheme("ace/theme/cobalt");
+                edCss.session.setMode("ace/mode/css");
+               
+               window.edJs= ace.edit("ejs");
+                edJs.setTheme("ace/theme/cobalt");
+                edJs.session.setMode("ace/mode/javascript");
+               
+                edHtml.getSession().on('change', function(){
+                    update();
+                })
+
+                edCss.getSession().on('change', function(){
+                    update();
+                })
+
+                edJs.getSession().on('change', function(){
+                    update();
+                })
+
+            }
+
+                setEditor();
+                update();
+            // <script>
+                // // create ace editor
+                //             var editor = ace.edit("htmle");
+                //             editor.setTheme("ace/theme/eclipse");
+                //             editor.getSession().setMode("ace/mode/javascript");
+
+                //             // create hypersearch instance with reference to callback
+                //             var hyper = hyperace.create(editor, 'results', null, {'load': loaded});
+                //             hyper.searchMultiSession = true;
+
+                //             // update session info once all sessions are loaded
+                //             var sessions = [];
+                //             function setSessions() {
+                //             hyper.setSessions(sessions);
+                //             hyper.setSession('sessions.js');
+                //             }
+
+                //             // called when searchbox component finishes loading
+                //             function loaded () {
+                //                 // add template(radio buttons) to search panel (personal preference to copy from html rather than creating in js)
+                //                 $('.ace_search').append($('#appendopt').html()); 
+                                
+                //                 // remove template from dom so it does not conflict with search panel
+                //                 document.getElementById('appendopt').parentNode.removeChild(document.getElementById('appendopt'));
+                                
+                //                 // track radio changes for multi or current search
+                //                 $('[name=hyperwho]').change(function () {
+                //                     hyper.searchMultiSession = this.id == 'hyperall' ;
+                //                 });
+                                
+                //                 editor.focus();
+                            
+                //                 // below we just load files for this example into the editor sessions for convenience
+                                
+                //                 var sessioncount = 0; // track for all 3 sessions loaded to create and add sessions
+                //                 $.get('sessions.js', function(data) {
+                //                     sessions['sessions.js'] = editor.getSession();
+                //                     editor.getSession().setValue(data);
+                //                     sessioncount++;
+                //                     if (sessioncount == 3) setSessions();
+                            
+                //                 },
+                //                 "text" // recursive if not set
+                //                 );
+                //                 $.get('index.html', function(data) {
+                //                     var session = new ace.EditSession(data, {
+                //                         "path": "ace/mode/xml"
+                //                     });
+                //                     sessions['index.html'] = session;
+                //                     sessioncount++;
+                //                     if (sessioncount == 3) setSessions();
+                //                 });
+                //                 $.get('style.css', function(data) {
+                //                     var session = new ace.EditSession(data, {
+                //                         "path": "ace/mode/css"
+                //                     });
+                //                     sessions['style.css'] = session;
+                //                     sessioncount++;
+                //                     if (sessioncount == 3) setSessions();
+                //                 });
+                                
+                //                 // end of example file load
+                //             }
+
+                //             // bare bones tab control, changes session and tab css
+                //             $('.tabs li a').click(function() {
+                //                 hyper.setSession($(this).attr('id'));
+                //                 setTab($(this).attr('id'));
+
+                //             });
+
+                //             // tab css change
+                //             function setTab(id) {
+                //                 $('.tabs li a').each(function () {
+                //                     if(id==$(this).attr('id'))
+                //                         $(this).parent().addClass('on');
+                //                     else
+                //                         $(this).parent().removeClass('on');
+                //                 });
+                //             }
+
+                //             // update tab css if search result clicked for not current tab, click will update the session
+                //             editor.on("changeSession", function(e) {
+                //                 setTab(hyper.currentSession); 
+                //             });
+
+        </script>
+</body>
+</html>
