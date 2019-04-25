@@ -1,19 +1,18 @@
 var express = require("express");
 var router = express.Router();
 var carpetas= require("../modelos/carpeta");
-
+var id="5cb4aef4bb541517fcd85fd5";
 
 router.post("/", function(req, res){
     var p = new carpetas({
         nombre : req.body.nombre,
         fechaCreacion: new Date(),
         usuarioCreador:{
-          _id: req.body.usuarioCreador
+          _id: id
 
         },
-        carpetaPadre:{
-            _id: req.body.carpetaPadre
-        }
+        carpetaPadre:null
+        
     });
 
     // res.redirect()
@@ -26,7 +25,30 @@ router.post("/", function(req, res){
     });
 
 });
+// esto
+router.post("/carhija", function(req, res){
+    var p = new carpetas({
+        nombre : req.body.nombre,
+        fechaCreacion: new Date(),
+        usuarioCreador:{
+          _id: id
 
+        },
+        carpetaPadre:req.body.carpetaPadre
+        
+        
+    });
+
+    // res.redirect()
+    p.save()
+    .then(obj=>{
+        res.send(obj);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+
+});
 
 router.get("/", function(req,res){
     carpetas.find()
@@ -60,9 +82,8 @@ router.put("/:id",function(req,res){
                 _id: req.body.usuarioCreador
       
               },
-              carpetaPadre:{
-                  _id: req.body.carpetaPadre
-              }
+              carpetaPadre:req.body.carpetaPadre
+              
         
         }
     ).then(result=>{

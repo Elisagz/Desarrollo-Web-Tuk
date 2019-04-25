@@ -1,5 +1,6 @@
 var id="5cb4aef4bb541517fcd85fd5";
-
+var padre="5cc1321925b3861f205ebed6";
+var idpadre=0;
 var arrex=[".html",".js",".css"];
 var arrima=["../img/html6.png","../img/js.png","../img/css.png"]; 
 
@@ -25,36 +26,63 @@ $(document).ready(function(){
    
 // ----------------click a mi unidad--------------
         $("#miunidad").click(function(){
-            $.ajax({  
-            url: 'miunidad.html',  
-            success: function(data) {  
-                document.getElementById('contenedort').innerHTML=data;
-                obtenerCarpetas();
-                obtenerArchivos();  
-            
-        
-        
-    }
-        });
+            cargarmiunidad();
     });  
         
  
  });
 
+ function cargarmiunidad(){
+    $.ajax({  
+        url: 'miunidad.html',  
+        success: function(data) {  
+            document.getElementById('contenedort').innerHTML=data;
+            obtenerCarpetas();
+            obtenerArchivos();  
+            idpadre=null;
+            console.log("valor del id padre" );
+            console.log(idpadre );
+
+    
+    
+}
+    });
+ }
 
 
- function dele(){
-    $("#contenedort").html("")
-    console.log("cargo fuera");
-    // $.ajax({  
-    //     url: 'contenido.html',  
-    //     success: function(data) {  
-    //         document.getElementById('contenedort').innerHTML=data;
-    //         console.log("cargo")
-    //         // obtenerCarpetas();
-    //         // obtenerArchivos(); 
-//  }});
+
+ function abrircarpeta(e,idc){
+    e.preventDefault();
+    $("#contenedort").html("");
+    $("#contenedort").append(`
+    <button type="button" onclick="atras()">atras</button>
+    <div class="row spacefiles justify-content-start mt-3" id="contenido"> 
+      </div>
+    `)
+    console.log("cargo dentro de carpeta" );
+    console.log(`valor del id de carpeta`+idc);
+    idpadre=idc;
+    obtenerCarpetashijas(idc);
+    console.log("id padre" );
+    console.log(idpadre);
+   
 };
+
+function atras(){
+    console.log("padre en la fi¡uncion atras");
+    console.log(idpadre);
+    // $("#contenedort").html("");
+    if(idpadre==null){
+        cargarmiunidad();
+    }
+    if(idpadre!=null){
+        //  $("#contenedort").html("");
+        console.log("el valor del padre aqui");
+       obtenerCarpetashijas(idpadre);
+} 
+    } 
+
+//cargar usuario 
 function cargardata(){
     $.ajax({  
         url:"http://localhost:3334/usuarios/"+ id,
@@ -89,7 +117,65 @@ function obtenerCarpetas(){
         success:function(res){
             console.log("Respuesta");
             console.log(res);
-            generarItems(res);
+            // console.log("carpeta padre");
+            for (var i = 0; i < res.length; i++) {
+
+            // console.log(res[i].carpetaPadre._id);
+            
+            if(res[i].carpetaPadre==null){
+                // console.log("id");
+                idpadre=res[i].carpetaPadre
+               
+                // generarItems(res[i]);
+
+                $("#carpeta").append(
+                    `<div class="col-2  id="${res[i]._id}" >
+                    <a href="#" ondblclick="abrircarpeta(event, '${res[i]._id}')" class="c"><div class="carpet3">
+                        <i class="fas fa-folder fol2"></i>
+                    <span class="col etiqueta2 px-auto">${res[i].nombre}</span>
+                </div></a> 
+                    
+                    
+                </div>`); 
+            }
+           } 
+           
+
+        },
+        error:function(error){
+            console.log(error);
+        }
+    });
+};
+function obtenerCarpetashijas(idc){
+    $.ajax({
+        url:"http://localhost:3334/carpetas",
+        method:"GET",
+        dataType:"json",
+        success:function(res){
+            console.log("Respuesta");
+            console.log(res);
+            for (var i = 0; i < res.length; i++) {
+                // idpadre=res[i].carpetaPadre;
+                // console.log(res[i].carpetaPadre._id);
+                if(res[i].carpetaPadre==idc){
+                    
+                    // console.log("padre dentro de obtener hijas");
+                    // console.log(idpadre);
+                    // generarItems(res[i]);
+                    $("#contenido").append(
+                        `<div class="col-2  id="${res[i]._id}">
+                        <a href="#" ondblclick="abrircarpeta(event, '${res[i]._id}')" class="c"><div class="carpet3">
+                            <i class="fas fa-folder fol2"></i>
+                        <span class="col etiqueta2 px-auto">${res[i].nombre}</span>
+                    </div></a> 
+                        
+                        
+                    </div>`); 
+                }
+               }
+          
+            
         },
         error:function(error){
             console.log(error);
@@ -98,52 +184,83 @@ function obtenerCarpetas(){
 }
 
 
-function generarItems(res){
+// function generarItems(res){
    
     
-    for(var i=0; i<res.length;i++){
+//     for(var i=0; i<res.length;i++){
         
-            $("#carpeta").append(
-                `<div class="col-2 >
-                <a href="#" ondblclick="dele()" class="c"><div class="carpet3">
-                    <i class="fas fa-folder fol2"></i>
-                <span class="col etiqueta2 px-auto">${res[i].nombre}</span>
-            </div></a> 
+//             $("#carpeta").append(
+//                 `<div class="col-2 >
+//                 <a href="#" ondblclick="abrircarpeta(${res[i]._id})" class="c"><div class="carpet3">
+//                     <i class="fas fa-folder fol2"></i>
+//                 <span class="col etiqueta2 px-auto">${res[i].nombre}</span>
+//             </div></a> 
                 
                 
-            </div>`);
+//             </div>`);
                 
-    }
-}
+//     }
+// }
 
 $("#btn-crear-carpeta").click(function(){
 
     var campos= $("#GCarpeta").serialize();
+
     console.log("Información a guardar: " + campos);
-    $.ajax({
-        url:"http://localhost:3334/carpetas",
-        method:"post",
-        data:campos,
-        dataType:"json",
-        success: function(res){
-            console.log(res);
-            console.log("se creo la nueva carpeta")
-            
-            $("#carpeta").append(
-                `<div class="col-2 >
-            <a href="#" ondblclick="dele()" class="c"><div class="carpet3">
-                <i class="fas fa-folder fol2"></i>
-               <span class="col etiqueta2 px-auto">${res.nombre}</span>
-           </div></a> 
-            
-               
-         </div>
-            `)
-        },
-        error:function(error){
-            console.log(error);
-        }
-    });
+
+    if(idpadre==null){
+        $.ajax({
+            url:"http://localhost:3334/carpetas",
+            method:"post",
+            data:campos,
+            dataType:"json",
+            success: function(res){
+                console.log(res);
+                console.log("se creo la nueva carpeta")
+                
+                $("#carpeta").append(
+                    `<div class="col-2 id="${res._id}">
+                <a href="#" ondblclick="abrircarpeta(event, '${res._id}')" class="c"><div class="carpet3">
+                    <i class="fas fa-folder fol2"></i>
+                   <span class="col etiqueta2 px-auto">${res.nombre}</span>
+               </div></a> 
+                
+                   
+             </div>
+                `)
+            },
+            error:function(error){
+                console.log(error);
+            }
+        });
+    }
+    if(idpadre!=null){
+        $.ajax({
+            url:"http://localhost:3334/carpetas/carhija",
+            method:"post",
+            data:campos + "&carpetaPadre="+idpadre,
+            dataType:"json",
+            success: function(res){
+                console.log(res);
+                console.log("se creo la nueva carpeta")
+                
+                $("#contenedort").append(
+                    `<div class="col-2 id="${res._id}">
+                <a href="#" ondblclick="abrircarpeta(event, '${res._id}')" class="c"><div class="carpet3">
+                    <i class="fas fa-folder fol2"></i>
+                   <span class="col etiqueta2 px-auto">${res.nombre}</span>
+               </div></a> 
+                
+                   
+             </div>
+                `)
+            },
+            error:function(error){
+                console.log(error);
+            }
+        });
+    }
+  
 });
 
 // -----------------funciones para archivos---------------
@@ -238,7 +355,7 @@ $("#btn-crear-archivo").click(function(){
             console.log(error);
         }
     });
-})
+});
 
 // .----------------------funciones Perfil---------------------
 
