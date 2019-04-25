@@ -1,0 +1,114 @@
+<!DOCTYPE html> 
+<html>
+
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/estilosDashb.css">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700,900" rel="stylesheet">
+	  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+        <script src="js/all.js"></script>
+        
+        
+        <title>Page Title</title>
+        <style>
+              .modal-backdrop.show {
+                opacity: .14 !important;
+            }
+        </style>
+    </head>
+    <body>
+        
+            <div class="text-center"><h4>Mi Perfil</h4></div>
+            
+            <hr>
+            
+            <div class="col-auto text-center ml-none">
+                    <div class="mb-2">
+                       <i class="far fa-user-circle perf"></i> 
+                    </div>
+                    
+                       <button class="btn">Subir foto</button> 
+                    
+                </div>  
+            
+             <div class="row justify-content-center pt-4" >
+                        <div class="col-6  bor mr-none" id="c">
+                            <div class="row dat">
+                                <div class="col-4"><h6>NOMBRE</h6></div>
+                                <div class="col-6" ><h5 id="nombre" name="nombre"></h5></div>
+                                <div class="col-2">
+                                  <a href="#exampleModalCenter"  data-toggle="modal"><i class="fas fa-pencil-alt edit "></i></a>  
+                                </div>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitle">Actualizar datos</h5>
+                                                <button type="button" id="x" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form id=formModal>
+                                            <div class="modal-body pr-4 pl-4">
+                                              <small>Nombre</small>
+                                                <input class="input-modal form-control mb-2 "  name="nombre" id="nombrem" type="text">
+                                                <small>Apellido</small>
+                                                <input class="input-modal form-control mb-1" name="apellido" id="apellidom" type="text" >
+                                                <small>Correo</small><br>
+                                                <input class="input-modal form-control mb-1" name="email" id="correom" type="text" >
+                                                <small>Contraseña</small><br>
+                                                <input class="input-modal form-control" name="password" id="passwordm" type="text" >
+                                                
+                                            </div>
+                                            </form>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-sb" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" onclick="cargardata2()" class="btn btn-sb2" data-dismiss="modal">Listo</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <!-- fin modal -->
+                                </div>
+                            
+                            <div class="row dat">
+                                <div class="col-4"><h6>APELLIDO</h6></div>
+                                <div class="col-6"> <h5 id="apellido"  name="nombre"></h5></div>        
+                                </div>
+                            
+                            <div class="row dat">
+                                <div class="col-4"><h6>CORREO</h6></div>
+                                <div class="col-6"><h5 id="correo"></h5></div>             
+                                </div>
+                            
+                            <div class="row dat">
+                                <div class="col-4"><h6>CONTRASEÑA</h6></div>
+                                <div class="col-6"><h5 id="password"></h5></div>         
+                                </div>
+                                
+                             <!-- <div class="row dat">
+                                        <div class="col-4"><h6>USUARIO</h6></div>
+                                        <div class="col-6"><h5 id="usuarioName"></h5></div>           
+                                        </div> -->
+                         </div> 
+                                        
+                 </div>
+                  <div class="row justify-content-center pt-4">
+                      <div class="form-check-inline">
+                           <button type="submit" class="btn btn-secondary mr-2">Cerrar</button>
+                           <button type="submit" class="btn btn-primary" onclick="Actualizar()">Guardar</button>
+                        </div>        
+                     </div>  
+          
+    
+
+             
+            <script src="js/jquery-3.3.1.min.js"></script>
+            <script src ="js/popper.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/controlador-dash.js"></script>
+     </body>
+</html>
