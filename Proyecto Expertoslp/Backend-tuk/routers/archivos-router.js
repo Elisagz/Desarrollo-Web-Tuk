@@ -8,13 +8,31 @@ router.post("/", function(req, res){
         nombre : req.body.nombre,
         fechaCreacion: new Date(),
         extencion:req.body.extencion,
-        usuarioCreador:{
-          _id: req.body.usuarioCreador
+        contenidoArchivo:req.body.contenidoArchivo,
+        usuarioCreador:req.body.usuarioCreador,
+        carpetaPadre:null
+        
+    });
 
-        },
-        carpetaPadre:{
-            _id: req.body.carpetaPadre
-        }
+    // res.redirect()
+    p.save()
+    .then(obj=>{
+        res.send(obj);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+
+});
+router.post("/archivoin", function(req, res){
+    var p = new archivos({
+        nombre : req.body.nombre,
+        fechaCreacion: new Date(),
+        extencion:req.body.extencion,
+        contenidoArchivo:req.body.contenidoArchivo,
+        usuarioCreador:req.body.usuarioCreador,
+        carpetaPadre:req.body.carpetaPadre
+        
     });
 
     // res.redirect()
@@ -58,13 +76,10 @@ router.put("/:id",function(req,res){
         {
             nombre : req.body.nombre,
             extencion: req.body.extencion,
-            usuarioCreador:{
-                _id: req.body.usuarioCreador
-      
-              },
-              carpetaPadre:{
-                  _id: req.body.carpetaPadre
-              }
+            contenidoArchivo:req.body.contenidoArchivo,
+            usuarioCreador:req.body.usuarioCreador,
+            carpetaPadre:req.body.carpetaPadre
+              
         
         }
     ).then(result=>{

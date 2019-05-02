@@ -6,7 +6,7 @@ $("#btn-guardar-usuario").click(function(){
     $.ajax({
         url:"http://localhost:3334/usuarios/signUp",
         method:"post",
-        data:campos,
+        data:campos+"&tipoUsuario=1",
         dataType:"json",
         success: function(res){
             console.log(res);

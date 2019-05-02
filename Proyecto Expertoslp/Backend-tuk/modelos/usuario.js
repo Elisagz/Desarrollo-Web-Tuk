@@ -8,8 +8,9 @@ var usuarioSchema =new mongoose.Schema({
    email: String,
    password:String,
    fotoPerfil:Buffer,
-   carpetascomp: mongoose.Schema.Types.Mixed,
-   archivoscomp:mongoose.Schema.Types.Mixed,
+   tipoUsuario:Number,
+   carpetascomp: Array,
+   archivoscomp:Array,
    proyectoscomp:mongoose.Schema.Types.Mixed
 });
 

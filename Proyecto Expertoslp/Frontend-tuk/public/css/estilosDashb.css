@@ -26,9 +26,9 @@ header .menu a{
     font-size: 27px;
 }
 
-header .menu a:hover{
+/* header .menu a:hover{
     color: #FFA302;
-}
+} */
 
 header .logo img{
     height: 50px;
@@ -192,7 +192,7 @@ hr{
     /* border-bottom-color:  1px solid;; */
     /* border: 1px solid #DADCE0; */
     /* background: #df8d00; */
-    padding:6px;
+    padding:4px;
     border-radius: 6px;
     text-align: -webkit-center;
     
@@ -329,14 +329,108 @@ outline: none !important;
  }
 
 
+ 
  .dropdown-menu{
- background:#024057;
- font-family: 'Montserrat'
- /* color:black !important; */
- /* left: 50px !important; */
+    background:#ffffff;
+    font-family: 'Montserrat';
+    /* color:black; */
+    box-shadow: 1px 1px 2px #666;
+    /* box-shadow: #7B7B7B; */
+    color:#686C81 !important;
+    margin-top: 5px !important;
+    /* left: 50px !important; */
+    }
+
+   
+.dropdown-item {
+        color: #686C81 !important;
+        font-family: 'Montserrat';
+        /* font-weight: 600; */
+        font-size: 1em
+
+        /* background: #ffffff; */
+     }
+ /* .dropdown-item span {
+       color:black
+     } */
+dropdown-item .coli {
+        color:#686C81;
+        font-weight: normal;
+        font-size: 1.25em;
+      } 
+ /* .dropdown-item span:hover {
+    color: white; */
+    /* background: #DF8D00; */
+ 
+ .dropdown-item:hover {
+    color: white !important;
+    background: #DF8D00;
+ }
+ /* .dropdown-item .coli :hover {
+     color:white;
+ } */
+
+ li{
+    list-style:none;
+    /* padding-left: 0px; */
+ }
+ ul{
+    padding-inline-start: 0px !important;
+ }
+ .nu{
+    font-size: 15px !important;
+ }
+ .nue {
+    font-size: 0;
+}
+
+.imagenperfil{
+ border-radius: 100px
+}
+
+
+ .pricing {
+    border: 1px solid #f0f0f0;
+    background: #fafafa;
+    padding: 2em 1em 1em 1em;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    border-radius: 2px; }
+    .pricing .pricing-heading {
+      margin-bottom: 30px; }
+    .pricing .price {
+      font-size: 72px;
+      color: #df8d00;
+      line-height: 50px;
+      font-weight: 700; }
+      .pricing .price .currency {
+        font-size: 30px;
+        top: -0.9em;
+        padding-right: 10px; }
+      .pricing .price small {
+        font-size: 13px;
+        display: block;
+        color: #888f94; }
+ .hr2 {
+    margin-top: 5px ;
+    margin-bottom: 5px;
  }
 
- .dropdown-item:hover {
-    color: white;
-    background: #091933;
+ .modalcolor{
+     background: #091933;
+     /* color:white; */
+ }
+ .titulocolor{
+     color:#FFA302 !important;
+     font-weight: 700 !important;
+ }
+ .equis{
+     color:#DF8D00 !important;
+     text-shadow: none !important;
+
+ }
+
+ .modal-footer{
+    padding: 0.7rem !important; 
  }

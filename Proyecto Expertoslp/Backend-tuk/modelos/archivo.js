@@ -5,6 +5,7 @@ var archivosSchema = new mongoose.Schema({
    nombre: String,
    fechaCreacion:  Date,
    extencion:Number,
+   contenidoArchivo:String,
    usuarioCreador: mongoose.Schema.Types.Mixed,
    carpetaPadre: mongoose.Schema.Types.Mixed
  

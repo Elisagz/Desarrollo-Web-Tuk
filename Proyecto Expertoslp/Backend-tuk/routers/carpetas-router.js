@@ -1,16 +1,15 @@
 var express = require("express");
 var router = express.Router();
 var carpetas= require("../modelos/carpeta");
-var id="5cb4aef4bb541517fcd85fd5";
+// var id="5cb4aef4bb541517fcd85fd5";
 
+
+//-------------peticion guardar nueva carpeta------------------------------
 router.post("/", function(req, res){
     var p = new carpetas({
         nombre : req.body.nombre,
         fechaCreacion: new Date(),
-        usuarioCreador:{
-          _id: id
-
-        },
+        usuarioCreador:req.body.usuarioCreador,
         carpetaPadre:null
         
     });
@@ -25,15 +24,12 @@ router.post("/", function(req, res){
     });
 
 });
-// esto
+//-------------peticion guardar carpeta hija------------------------------
 router.post("/carhija", function(req, res){
     var p = new carpetas({
         nombre : req.body.nombre,
         fechaCreacion: new Date(),
-        usuarioCreador:{
-          _id: id
-
-        },
+        usuarioCreador: req.body.usuarioCreador,
         carpetaPadre:req.body.carpetaPadre
         
         
@@ -49,7 +45,7 @@ router.post("/carhija", function(req, res){
     });
 
 });
-
+//-------------------obtener todas carpetas------------------------------
 router.get("/", function(req,res){
     carpetas.find()
     .then(data=>{
@@ -60,7 +56,7 @@ router.get("/", function(req,res){
     });
 });
 
-//Obtener un usuario en particular
+//
 router.get("/:id",function(req,res){
     carpetas.find({_id:req.params.id})
     .then(data=>{
@@ -72,16 +68,13 @@ router.get("/:id",function(req,res){
 });
 
 
-//Peticion para actualizar un usuario
+//Peticion para actualizar una carpeta
 router.put("/:id",function(req,res){
     carpetas.update(
         {_id:req.params.id},
         {
             nombre : req.body.nombre,
-            usuarioCreador:{
-                _id: req.body.usuarioCreador
-      
-              },
+            usuarioCreador: req.body.usuarioCreador,
               carpetaPadre:req.body.carpetaPadre
               
         
@@ -94,7 +87,7 @@ router.put("/:id",function(req,res){
     });//El primero son los filtros, el segundo son los campos
 });
 
-//Peticion para eliminar un usuario
+//Peticion para eliminar una carpeta
 router.delete("/:id",function(req, res){
    carpetas.remove({_id:req.params.id})
     .then(data=>{

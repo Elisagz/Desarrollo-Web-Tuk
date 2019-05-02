@@ -1,66 +1,103 @@
-// function setEditor(){
-// window.ed=ace.edit('html');
-// ed.setTheme('ace/theme/monokai');
-// ed.setMode('ace/mode/html');
-
-// }
-
-// setEditor();
+var codProyecto = window.location.search.substring(1);
+var aHtml;
+var aCss;
+var aJs;
 
 
-var editorhtml= CodeMirror.fromTextArea (
-    document.getElementById('html'),{
-        mode:"xml",
-        theme: "blackboard",
-        lineNumbers:true,
-        autoCloseTags:true
-        
-        
-    
-    });
+var contenido;
 
-    console.log(editorhtml);
+$(document).ready(function(){
+    cargarProyecto();
+});
 
-// var editorcss= CodeMirror.fromTextArea (
-//         document.getElementById('css'),{
-//             mode:"css",
-//             theme: "blackboard",
-//             lineNumbers:true,
-//             autoCloseTags:true,      
-//         }).getValue;
+function update(){
+                var res=document.getElementById('resultado').contentWindow.document;
+                
+                res.open();
+                res.writeln(edHtml.getValue() +
+                            '<style>' + edCss.getValue() + '</style>'+
+                             '<script>'+ edJs.getValue()+'<\/script>');
 
-// var editorjs= CodeMirror.fromTextArea (
-//         document.getElementById('js'),{
-//             mode:"javascript",
-//             theme: "base16-dark",
-//             lineNumbers:true,
-//             autoCloseTags:true
-//         });
- 
+                res.close();
+            }
+  function setEditor(){
+                window.edHtml= ace.edit('htmle');
+                edHtml.setTheme("ace/theme/cobalt");
+                edHtml.session.setMode("ace/mode/html");
+                // edHtml.setValue();
 
+               window.edCss= ace.edit("ecss");
+                edCss.setTheme("ace/theme/cobalt");
+                edCss.session.setMode("ace/mode/css");
+                console.log(edCss)
+               
+               window.edJs= ace.edit("ejs");
+                edJs.setTheme("ace/theme/cobalt");
+                edJs.session.setMode("ace/mode/javascript");
+               
+                edHtml.getSession().on('change', function(){
+                    update();
+                    contenido=edHtml.getValue();
+                    // console.log(contenido)
+                })
 
-// var code = document.getElementById('resultado').contentWindow.document;
+                edCss.getSession().on('change', function(){
+                    update();
+                })
 
-// // console.log(editorhtml2);
+                edJs.getSession().on('change', function(){
+                    update();
+                    
+                })
 
+            }
 
-//     document.body.onkeyup = function() {
-// // editorhtml.getDoc().setValue(document.body.onkeyup);
+  console.log(codProyecto);
+ setEditor();
+ update();
 
-//         code.open();
-//         // console.log(editorhtml2.onkeyup);
-//         code.writeln(
-            
-//             editorhtml.value +
-//             "<style>" +
-//             editorcss.getvalue+
-//             "</style>" +
-//             "<script>" +
-//             editorjs.value +
-//             "</script>"
-//         );
-//         code.close();
-//     }
- 
-    
-  
+ $("#guardarproj").click(function(){
+    console.log();
+    aHtml=edHtml.getValue();
+    aCss=edCss.getValue();
+    aJs=edJs.getValue();
+
+    campos={aHtml, aCss, aJs};
+    $.ajax({  
+        url:"http://localhost:3334/proyectos/"+ codProyecto,
+        method:"put",
+        data:campos,
+        dataType:"json",
+         success: function(res){
+            console.log(res);
+            console.log("se va actualiza el usuario");
+        //    edHtml.setValue(aHtml)
+
+            // console.log(contenidohtml)
+            // llenarinputs(res);
+
+         },
+         error:function(error){
+            console.log(error);
+         }
+
+ })
+});
+
+function cargarProyecto(){
+    // campos={aHtml, aCss, aJs};
+    $.ajax({  
+        url:"http://localhost:3334/proyectos/"+ codProyecto,
+        method:"get",
+        dataType:"json",
+         success: function(res){
+            console.log(res[0].aHtml);
+            edHtml.setValue(res[0].aHtml);
+            edCss.setValue(res[0].aCss);
+            edJs.setValue(res[0].aJs)
+         },
+         error:function(error){
+            console.log(error);
+         }
+        })
+}

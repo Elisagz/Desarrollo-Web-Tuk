@@ -1,70 +1,23 @@
-// const router = require('express').Router();
-// const passport = require('passport');
-
-// router.get('/', (req, res, next) => {
-// //   res.render('index');
-// });
-
-// // router.get('/signup', (req, res, next) => {
-// //   res.render('signup');
-// // });
-
-// router.post('/signup', passport.authenticate('local-signup', {
-// //   successRedirect: '/profile',
-// //   failureRedirect: '/signup',
-//   failureFlash: true
-// })); 
-
-// // router.get('/signin', (req, res, next) => {
-// // //   res.render('signin');
-// // });
-
-
-// router.post('/signin', passport.authenticate('local-signin', {
-// //   successRedirect: '/profile',
-// //   failureRedirect: '/signin',
-//   failureFlash: true
-// }));
-
-// // router.get('/profile',isAuthenticated, (req, res, next) => {
-// //   res.render('profile');
-// // });
-
-// // router.get('/logout', (req, res, next) => {
-// //   req.logout();
-// //   res.redirect('/');
-// // });
-
-
-// function isAuthenticated(req, res, next) {
-//   if(req.isAuthenticated()) {
-//     return next();
-//   }
-
-//   res.redirect('/')
-// }
-
-// module.exports = router;
-
-
-
 var express = require("express");
 var router = express.Router();
+var mongoose= require("mongoose");
 // var bodyParser = require("body-parser");
 
 var usuario= require("../modelos/usuario");
-var passport = require('passport');
 
-// SIGN UP
+
+/*-----------------Peticion de registro de usuarios-------------------------
+---------------------------------------------------------------------------*/
 router.post("/signUp", function(req, res){
-    const { nombre, apellido, usuarioName, email, password, fotoPerfil} = req.body;
+    const { nombre, apellido, usuarioName, email, password, fotoPerfil, tipoUsuario} = req.body;
     var p = new usuario({
             nombre,
             apellido,
             usuarioName,//ffff
             email,
             password,
-            fotoPerfil
+            fotoPerfil,
+            tipoUsuario
     });
 
     // res.redirect()
@@ -78,7 +31,7 @@ router.post("/signUp", function(req, res){
 
 });
 
-// getantiguo
+// getusuarios
 router.get("/", function(req,res){
     usuario.find()
     .then(data=>{
@@ -89,9 +42,63 @@ router.get("/", function(req,res){
     });
 });
 
+//---------------Peticion para obtener las carpetas compartidas--------------
+//--------------------------------------------------------------------------
+router.get("/:id/carpetas",function(req,res){
+    usuario.aggregate([
+        {
+            $lookup:{
+                from:"carpetas",
+                localField:"carpetascomp", 
+                foreignField:"_id",
+                as:"carpetascomp"
+            }
+        },
+        {
+            $match:{
+                _id:mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { //Obtener solo el atributo de contactos
+            $project:{carpetascomp:1}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 
-
-
+// ----------------peticion para obtener los archivos compartidos---------
+//------------------------------------------------------------------------
+router.get("/:id/archivos",function(req,res){
+    usuario.aggregate([
+        {
+            $lookup:{
+                from:"archivos",
+                localField:"archivoscomp", 
+                foreignField:"_id",
+                as:"archivoscomp"
+            }
+        },
+        {
+            $match:{
+                _id:mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { //Obtener solo el atributo de contactos
+            $project:{archivoscomp:1}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 
 
 //Obtener un usuario en particular
@@ -105,29 +112,75 @@ router.get("/:id",function(req,res){
     });
 });
 
-//SignIN prev
-// router.post("/signIn", passport.authenticate('local',{
-
-// }));
-//Peticion para actualizar un usuario
+//------------------Peticion para actualizar un usuario-------------------
+//------------------------------------------------------------------------
 router.put("/:id",function(req,res){
     usuario.update(
         {_id:req.params.id},
         {
+         $set:{
             nombre : req.body.nombre,
             apellido: req.body.apellido,
-            usuarioName:req.body.usuarioName,//ffff
+            // usuarioName:req.body.usuarioName,//ffff
             email :req.body.email,
             password : req.body.password,
             fotoPerfil: req.body.fotoPerfil
+            
+        }})
+        .then(result=>{
+        res.send(result);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+//---------------------Peticion para compartir carpeta-----------------------
+router.put("/:id/:carpetascomp/carpetas",function(req,res){
+    usuario.update(
+        {_id:mongoose.Types.ObjectId(req.params.id)},
+        {
+        $push:{
+            carpetascomp: mongoose.Types.ObjectId(req.params.carpetascomp),
+        }     
         }
     ).then(result=>{
         res.send(result);
     })
     .catch(error=>{
         res.send(error);
-    });//El primero son los filtros, el segundo son los campos
+    });
 });
+//---------------------Peticion para compartir archivos------------------
+router.put("/:id/:archivoscomp/archivos",function(req,res){
+    usuario.update(
+        {_id:mongoose.Types.ObjectId(req.params.id)},
+        {
+        $push:{
+            archivoscomp: mongoose.Types.ObjectId(req.params.archivoscomp),
+        }     
+        }
+    ).then(result=>{
+        res.send(result);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+// -------------------Actualizar tipo plan-------------------------
+    router.put("/:id/plan",function(req,res){
+        usuario.update(
+            {_id:req.params.id},
+            {
+            $set:{
+                tipoUsuario:req.body.tipoUsuario
+            }}
+        ).then(result=>{
+            res.send(result);
+        })
+        .catch(error=>{
+            res.send(error);
+        });//El primero son los filtros, el segundo son los campos
+    });
 
 //Peticion para eliminar un usuario
 router.delete("/:id",function(req, res){
