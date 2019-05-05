@@ -25,7 +25,7 @@ router.post("/", function(req, res){
 
 });
 
-//-------------------obtener todos lo proyectos que el usuario tiene en su------------------------------
+//-------------------obtener todos lo proyectos que el usuario tiene en su unidad------------------------------
 router.get("/", function(req,res){
     proyecto.find()
     .then(data=>{
@@ -75,7 +75,7 @@ router.put("/:id",function(req,res){
 });
 
 //-----------------------------------------------------------------------------
-//Peticion para eliminar un usuario
+//Peticion para eliminar un proyecto
 router.delete("/:id",function(req, res){
     proyecto.remove({_id:req.params.id})
      .then(data=>{
@@ -86,7 +86,23 @@ router.delete("/:id",function(req, res){
      });
  });
  
-
+//Peticion para actualizar nombre de un proyecto
+router.put("/:id/rename",function(req,res){
+    proyecto.update(
+        {_id:req.params.id},
+        {
+            $set:{
+            nombre:req.body.nombre
+              
+         }
+        }
+    ).then(result=>{
+        res.send(result);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 
 
 module.exports = router;

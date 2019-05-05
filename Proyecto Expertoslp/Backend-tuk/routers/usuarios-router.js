@@ -99,6 +99,34 @@ router.get("/:id/archivos",function(req,res){
         res.send(error);
     });
 });
+// -----------------------------funcion para obtener los proyectos compartidos------------
+// ---------------------------------------------------------------------------------------
+router.get("/:id/proyectos",function(req,res){
+    usuario.aggregate([
+        {
+            $lookup:{
+                from:"proyectos",
+                localField:"proyectoscomp", 
+                foreignField:"_id",
+                as:"proyectoscomp"
+            }
+        },
+        {
+            $match:{
+                _id:mongoose.Types.ObjectId(req.params.id)
+            }
+        },
+        { //Obtener solo el atributo de contactos
+            $project:{proyectoscomp:1}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 
 
 //Obtener un usuario en particular
@@ -157,6 +185,23 @@ router.put("/:id/:archivoscomp/archivos",function(req,res){
         {
         $push:{
             archivoscomp: mongoose.Types.ObjectId(req.params.archivoscomp),
+        }     
+        }
+    ).then(result=>{
+        res.send(result);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+// ---------------------peticion para compartir proyectos--------------------
+
+router.put("/:id/:proyectoscomp/proyectos",function(req,res){
+    usuario.update(
+        {_id:mongoose.Types.ObjectId(req.params.id)},
+        {
+        $push:{
+            proyectoscomp: mongoose.Types.ObjectId(req.params.proyectoscomp),
         }     
         }
     ).then(result=>{

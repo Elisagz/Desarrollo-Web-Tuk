@@ -69,25 +69,39 @@ router.get("/:id",function(req,res){
 });
 
 
-//Peticion para actualizar un usuario
+//Peticion para actualizar contenidod de un archivo
 router.put("/:id",function(req,res){
     archivos.update(
         {_id:req.params.id},
         {
-            nombre : req.body.nombre,
-            extencion: req.body.extencion,
+            $set:{
             contenidoArchivo:req.body.contenidoArchivo,
-            usuarioCreador:req.body.usuarioCreador,
-            carpetaPadre:req.body.carpetaPadre
               
-        
+         }
         }
     ).then(result=>{
         res.send(result);
     })
     .catch(error=>{
         res.send(error);
-    });//El primero son los filtros, el segundo son los campos
+    });
+});
+//Peticion para actualizar nombre de un archivo
+router.put("/:id/rename",function(req,res){
+    archivos.update(
+        {_id:req.params.id},
+        {
+            $set:{
+            nombre:req.body.nombre
+              
+         }
+        }
+    ).then(result=>{
+        res.send(result);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
 });
 
 //Peticion para eliminar un usuario

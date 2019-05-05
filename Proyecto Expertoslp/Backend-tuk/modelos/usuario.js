@@ -8,7 +8,7 @@ var usuarioSchema =new mongoose.Schema({
    email: String,
    password:String,
    fotoPerfil:Buffer,
-   tipoUsuario:Number,
+   tipoUsuario:String,
    carpetascomp: Array,
    archivoscomp:Array,
    proyectoscomp:mongoose.Schema.Types.Mixed

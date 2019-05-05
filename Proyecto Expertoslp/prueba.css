@@ -1,0 +1,27 @@
+
+body{
+    font-family:Arial;
+}
+h1{
+    background:green;
+    padding:18px;
+    color:white;
+    text-align:center;
+  
+}
+b {
+    color:green;
+    font-size:2em;
+     text-align:center;
+    
+}
+
+h5{
+    text-align:center; 
+}
+
+.btn{
+    padding:8px;
+    background: yellow;
+     
+}

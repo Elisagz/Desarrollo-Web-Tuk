@@ -3,7 +3,7 @@ body{
     /* background:; */
     /* font-family: 'Montserrat'; */
     padding-top: 65px;
-    overflow: hidden;
+    /* overflow: hidden; */
    }
 header{
     background: #091933;
@@ -83,7 +83,12 @@ h2{
 
 }
 
-
+strong{
+    color:#01B6C9;
+}
+#pleca{
+    color: rgba(255, 255, 255, .8);
+}
 .ace_editor {
     font: 15px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace !important;
 }

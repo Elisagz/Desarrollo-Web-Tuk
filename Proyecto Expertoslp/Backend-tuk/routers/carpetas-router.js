@@ -98,6 +98,22 @@ router.delete("/:id",function(req, res){
     });
 });
 
-
+//Peticion para actualizar nombre de una carpeta
+router.put("/:id/rename",function(req,res){
+    carpetas.update(
+        {_id:req.params.id},
+        {
+            $set:{
+            nombre:req.body.nombre
+              
+         }
+        }
+    ).then(result=>{
+        res.send(result);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 
 module.exports = router;

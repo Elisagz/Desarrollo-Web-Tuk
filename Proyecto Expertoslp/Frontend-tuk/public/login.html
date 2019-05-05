@@ -4,6 +4,10 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <script src="js/sweetalert2.all.min.js"></script>
+        <script src="js/sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="css/sweetalert2.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/estilo.css">
 	  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
@@ -11,14 +15,15 @@
         <script src="js/all.js"></script>
         
         
-        <title>Page Title</title>
+        <title>Tuk | Login</title>
+        <link rel="shortcut icon" type="image/png" href="img/logotucanico.png"/>
     </head>
     <body>
         
         <main>
             <form id="formLog">
                <div id="container-login">
-                   <img  src="img/logotucan01xs.png" alt="">
+                   <a href="index.html"><img  src="img/logotucan01xs.png" alt=""></a> 
 
                 <div class="inptext">
                         
@@ -26,7 +31,7 @@
                     <input  type="text" name="email" placeholder="Email">
                     
                      <i class="fas fa-lock cust"></i>
-                    <input  type="password" name="password" placeholder="Password">
+                    <input  type="password" required name="password" placeholder="Password">
                  
                     <button id="btn-login-usuario" type="button">Sign in</button>
                 </div>   

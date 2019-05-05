@@ -4,6 +4,9 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/sweetalert2.all.min.js"></script>
+        <script src="js/sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="css/sweetalert2.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/estilosDashb.css">
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700,900" rel="stylesheet">
@@ -19,6 +22,8 @@
         </style>
     </head>
     <body>
+        <div>
+
         
             <div class="text-center"><h4>Mi Perfil</h4></div>
             
@@ -29,7 +34,6 @@
                        <i class="far fa-user-circle perf"></i> 
                     </div>
                     
-                       <button class="btn">Subir foto</button> 
                     
                 </div>  
             
@@ -38,16 +42,14 @@
                             <div class="row dat">
                                 <div class="col-4"><h6>NOMBRE</h6></div>
                                 <div class="col-6" ><h5 id="nombre" name="nombre"></h5></div>
-                                <div class="col-2">
-                                  <a href="#exampleModalCenter"  data-toggle="modal"><i class="fas fa-pencil-alt edit "></i></a>  
-                                </div>
+                                
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalCenterTitle">Actualizar datos</h5>
-                                                <button type="button" id="x" class="close" data-dismiss="modal" aria-label="Close">
+                                            <div class="modal-header  modalcolor">
+                                                <h5 class="modal-title  titulocolor" id="exampleModalCenterTitle">Actualizar datos</h5>
+                                                <button type="button" class="close equis" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
@@ -86,7 +88,7 @@
                             
                             <div class="row dat">
                                 <div class="col-4"><h6>CONTRASEÑA</h6></div>
-                                <div class="col-6"><h5 id="password"></h5></div>         
+                                <div class="col-6"><h5 id="password"></h5>*****</div>         
                                 </div>
                                 
                              <!-- <div class="row dat">
@@ -98,12 +100,13 @@
                  </div>
                   <div class="row justify-content-center pt-4">
                       <div class="form-check-inline">
-                           <button type="submit" class="btn btn-secondary mr-2">Cerrar</button>
-                           <button type="submit" class="btn btn-primary" onclick="Actualizar()">Guardar</button>
+                          
+                           <a href="#exampleModalCenter" class="btn btn-secondary mr-2" data-toggle="modal"><i class="fas fa-pencil-alt edit "></i> Actualizar</a>
+                           <button type="submit" class="btn btn-primary" disabled id="guardarp" onclick="Actualizar()"><i class="far fa-save edit"></i> Guardar</button>
                         </div>        
                      </div>  
           
-    
+                    </div>
 
              
             <script src="js/jquery-3.3.1.min.js"></script>

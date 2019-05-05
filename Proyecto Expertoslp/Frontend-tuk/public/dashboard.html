@@ -4,38 +4,45 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/sweetalert2.all.min.js"></script>
+        <script src="js/sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="css/sweetalert2.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/estilosDashb.css">
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700,900" rel="stylesheet">
 	  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
-        <script src="js/all.js"></script>
+      
+      <script src="js/all.js"></script>
         
         
-        <title>Page Title</title>
+        <title>Tuk</title>
+        <link rel="shortcut icon" type="image/png" href="img/logotucanico.png"/>
     </head>
     <body id="bodytodo">
         <header class="row pl-2 fixed-top">
 
-                    <div class="col-auto logo pt-2">
+                    <div class="col-sm-auto logo pt-2">
                         <a href="#"><img src="img/tN.png"></a>
                         
                     </div>
-                    <nav class="col-12 col-sm-3 col-lg-6 menu d-inline-flex justify-content-end mr-5 ml-auto">
-                        <a href="" class="mr-2"><i class="fas fa-cog io"></i></a>
+                    <nav class="col-sm-6 col-lg-6 menu d-inline-flex justify-content-end usuarioc mr-5 ml-auto">
+                        <!-- <span ><i class="fas fa-cog io mr-2"></i></span>
+                        <span ><i class="fas fa-question-circle io"></i></span> -->
+                        
                         <!-- <button id="perfilUs" class="imagen"><img src="img/perfil.jpg" width="40" height="40" alt=""></button> -->
                        
                     
-                    <li class="nav-item nue" id="perf">
-                            <br>
-                            <a class="nav-link dropdown-toggle active ca nu" href="" id="dropdow3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span data-feather="plus"></span><img class="imagenperfil" id="imgperfil" src="img/perfil.jpg" width="40" height="40" alt=""><strong id="nombreperfil"> Elisa gabriela</strong></a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown03"> 
-                              
-                                <a class="dropdown-item oestilo nu coli" id="perfilUs" href="#"><i class="fas fa-user "></i> Ver Perfil </a>
-                                <a class="dropdown-item oestilo nu" id="salir" href="#"><i class="fas fa-sign-out-alt coli"></i><span> Salir</span></a>
+                        <li class="nav-item nue mostrar" id="perf">
+                                <br>
+                                <a class="nav-link dropdown-toggle active ca nu" href="" id="dropdow3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span data-feather="plus"></span><i class="fas fa-user-circle io"></i><strong id="nombreperfil"> Elisa gabriela</strong></a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown03"> 
                                 
-                            </div>
-                        </li>
+                                    <a class="dropdown-item oestilo nu coli" id="perfilUs" href="#"><i class="fas fa-user "></i> Ver Perfil </a>
+                                    <a class="dropdown-item oestilo nu" id="salir" href="#"><i class="fas fa-sign-out-alt coli"></i><span> Salir</span></a>
+                                    
+                                </div>
+                            </li>
                     </nav>
                    
         </header>
@@ -43,46 +50,43 @@
         <main>
             <div class="container-fluid">
                 <div class="row">
-                      
-                    <div class="barra-lateral col-12 col-sm-auto">
-                        
+                    <div class="barra-lateral col-sm-auto">    
                            <br>
                         <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
-                                <!-- <a href="" data-toggle="modal" data-target="#exampleModal" >Crear Carpeta</a>
-                                <a href="" data-toggle="modal" data-target="#exampleModal2" >Crear Archivos</a>
-                             -->
-                                <li class="nav-item">
+                           
+                               <!-- <a class="nav-item pequeño" style="display:none">
                                     <br>
-                                    <a class="nav-link dropdown-toggle active ca" href="" id="dropdow3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span data-feather="plus"></span> Nuevo
+                                    <a class="nav-link active ca" href="#" id="dropdow3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-plus f"></i><span>Nuevo</span> 
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdown03">
                                       
-                                        <a class="dropdown-item oestilo nu"  data-toggle="modal" data-target="#exampleModal" href="#">Carpeta</a>
-                                        <a class="dropdown-item oestilo nu" data-toggle="modal" data-target="#exampleModal2" href="#">Archivo</a>
+                                        <a class="dropdown-item oestilo nuk"  data-toggle="modal" data-target="#exampleModal" href="#"><i class="fas fa-folder-plus fotro"></i></a>
+                                        <a class="dropdown-item oestilo nuk" data-toggle="modal" data-target="#exampleModal2" href="#"><i class="fas fa-file-code fotro"></i></a>
                                         
                                     </div>
-                                </li>
-                        
-                            <a href="#" id="miunidad" class="ca"><i class="fas fa-laptop f"></i><span>Mi unidad</span></a>
+                                </a> -->
+
+                                
+                                        <a class="nav-link active ca" href="#" id="dropdow3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-plus f"></i><span>Nuevo</span> 
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown03">
+                                          
+                                            <a class="dropdown-item oestilo nuk"  data-toggle="modal" data-target="#exampleModal" href="#">Carpeta</a>
+                                            <a class="dropdown-item oestilo nuk" data-toggle="modal" data-target="#exampleModal2" href="#">Archivo</a>
+                                            
+                                        </div>
+                                    
+                            
+
+                            <a href="#" id="miunidad" class="ca"><i class="fas fa-home f"></i><span>Mi unidad</span></a>
                             <a href="#" id="compartidos" class="ca" ><i class="fas fa-share-alt f"></i><span>Compartidos</span></a>
                             <a href="#" class="ca"><i class="far fa-trash-alt f"></i><span>Papelera</span></a>
                             <hr id="bl">
                             <a href="#exampleModalp" data-toggle="modal"  class="ca"><i class="fas fa-folder-plus f"></i><span>Crear proyecto</span></a>
                             <a href="#" id="suscripciones" class="ca" ><i class="far fa-credit-card f"></i><span>Suscripciones</span></a>
-                            
-                          
-                            <!-- <div class="dropdown">
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Dropdown link
-                                </a>
-                              
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                              </div> -->
+
                         </nav>
                         
                     </div>
@@ -104,7 +108,7 @@
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-sb2" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-sb" id="btn-crear-carpeta">Crear c</button>
+                                <button type="button" class="btn btn-sb" data-dismiss="modal" id="btn-crear-carpeta">Crear carpeta</button>
 
                                 </div>
                             </div>
@@ -136,7 +140,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="btn btn-sb2" data-dismiss="modal">Cancelar</button>
-                                                <button type="button"  id="btn-crear-archivo" class="btn btn-sb">Crear a</button>
+                                                <button type="button"  id="btn-crear-archivo" data-dismiss="modal" class="btn btn-sb">Crear archivo</button>
                                                 </div>
                                             </div>
                                             </div>
@@ -183,7 +187,7 @@
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-sb2" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-sb" onclick="contar()" id="btn-crear-proyecto">Crear Proyecto</button>
+                                <button type="button" class="btn btn-sb"  data-dismiss="modal" onclick="contar()" id="btn-crear-proyecto">Crear Proyecto</button>
 
                                 </div>
                             </div>
@@ -255,9 +259,33 @@
                                     </div>
                                     </div>
                                 </div>
+                        <!--------------------------Modal Renombrar Item-------------  -->
+                        <div class="modal fade" id="modalRename" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header modalcolor">
+                                <h5 class="modal-title titulocolor" id="exampleModalLabel">Actualizar</h5>
+                                <button type="button" class="close equis" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                <form action="" id="gRename">
+                                <small>Cambiar nombre</small>
+                                <input type="text"  class="input-modal form-control mb-2" name="nombre" id="nombreit">
+                               </form>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-sb2" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-sb" onclick="actualizarItem()" data-dismiss="modal" id="renombrar">Renombrar</button>
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                               
                     <!--------------------------Contenedor----------------------------->
-                        <div class="col-9 archivo" id="contenedort">
+                        <div class="col-lg-9 col-md-11 col-sm-11 archivo" id="contenedort">
                                 
                 
             </div>

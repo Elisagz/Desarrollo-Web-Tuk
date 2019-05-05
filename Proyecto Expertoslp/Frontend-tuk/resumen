@@ -1,0 +1,1 @@
+db.usuarios.insert({nombre:"Elisa", apellido:"Zelaya", usuarioName:"egzelaya", email:"egz@gmail.com", password:"123", tipoUsuario:"1"})

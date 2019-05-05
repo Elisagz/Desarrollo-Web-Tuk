@@ -61,13 +61,13 @@ body{
 
 
 
-#container-login button[type="button"],#container-registro button[type="button"]{
+#container-login button[type="button"],#container-registro button[type="submit"]{
     background-color: #024057;
     width: 100%;
     border: 0;
     padding: 8px;
     border-radius: 7px;
-    color: white;
+    color: white ;
     font-size: 1em;
     font-weight: bolder;
     margin-bottom: 5px;

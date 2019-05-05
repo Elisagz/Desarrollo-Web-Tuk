@@ -16,7 +16,13 @@ $("#btn-login-usuario").click(function(){
                
            else{
                console.log("no hizo lo correcto")
-               alert(res.mesaje);
+               Swal.fire({
+                type: 'error',
+                title: 'Usuario no Valido',
+                text: 'Ingrese usuario y/o contraseña correctas',
+                width: "28rem",
+                padding:"1rem"
+              })
            }     
         },
         error:function(error){

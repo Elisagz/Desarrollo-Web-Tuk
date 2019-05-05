@@ -54,3 +54,18 @@
 .col-md-8 {
   max-width: none!important;
 }*/
+
+#colorlib-offcanvas {
+    background:#091933b7 !important;
+}
+#colorlib-footer {
+    background: #091933 !important;
+    /* padding-top: 30px !important; */
+
+}
+#colorlib-footer .copy {
+    background: #071225 !important;
+}
+body{
+    padding-top: 0px !important
+}
